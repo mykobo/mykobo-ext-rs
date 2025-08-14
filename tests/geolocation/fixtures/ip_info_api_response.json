@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "country": "France",
+  "countryCode": "FR",
+  "region": "IDF",
+  "regionName": "Île-de-France",
+  "city": "Paris",
+  "zip": "75000",
+  "lat": 48.8566,
+  "lon": 2.35222,
+  "timezone": "Europe/Paris",
+  "isp": "HostRoyale Technologies Pvt Ltd",
+  "org": "HostRoyale Technologies Pvt Ltd",
+  "as": "AS203020 HostRoyale Technologies Pvt Ltd",
+  "query": "103.138.124.41"
+}

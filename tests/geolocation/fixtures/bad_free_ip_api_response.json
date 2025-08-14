@@ -1,0 +1,21 @@
+{
+  "asn": null,
+  "asnOrganization": null,
+  "capital": null,
+  "cityName": null,
+  "continent": null,
+  "continentCode": null,
+  "countryCode": null,
+  "countryName": null,
+  "currencies": [],
+  "ipAddress": null,
+  "ipVersion": null,
+  "isProxy": false,
+  "languages": [],
+  "latitude": null,
+  "longitude": null,
+  "phoneCodes": [],
+  "regionName": null,
+  "timeZones": [],
+  "zipCode": null
+}

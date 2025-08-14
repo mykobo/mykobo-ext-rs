@@ -1,0 +1,29 @@
+{
+  "asn": "29614",
+  "asnOrganization": "VODAFONE GHANA AS INTERNATIONAL TRANSIT",
+  "capital": "Accra",
+  "cityName": "Accra (Kpeshie)",
+  "continent": "Africa",
+  "continentCode": "AF",
+  "countryCode": "GH",
+  "countryName": "Ghana",
+  "currencies": [
+    "GHS"
+  ],
+  "ipAddress": "102.176.41.169",
+  "ipVersion": 4,
+  "isProxy": false,
+  "languages": [
+    "en"
+  ],
+  "latitude": 5.59966,
+  "longitude": -0.176387,
+  "phoneCodes": [
+    233
+  ],
+  "regionName": "Greater Accra",
+  "timeZones": [
+    "Africa/Accra"
+  ],
+  "zipCode": "-"
+}

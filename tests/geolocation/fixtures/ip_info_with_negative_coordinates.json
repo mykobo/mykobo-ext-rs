@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "region": "ENG",
+  "regionName": "England",
+  "city": "Bedford",
+  "zip": "MK40",
+  "lat": 52.1346,
+  "lon": -0.4663,
+  "timezone": "Europe/London",
+  "isp": "Sky UK Limited",
+  "org": "Sky Italia",
+  "as": "AS5607 Sky UK Limited",
+  "query": "51.191.14.57"
+}
