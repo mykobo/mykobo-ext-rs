@@ -7,7 +7,6 @@ use crate::monitoring::models::{
 use reqwest::Client;
 use std::env;
 use tracing::debug;
-use tracing::field::debug;
 
 pub struct MonitoringResult {
     pub score: u8,
