@@ -81,7 +81,9 @@ impl MerkelScienceMonitoring {
         {
             Ok(response) => {
                 if response.status().is_success() {
-                    let result: AddressScreeningResponse = response.json().await?;
+                    let text = response.text().await?;
+                    println!("{text}");
+                    let result: AddressScreeningResponse = serde_json::from_str(&text)?;
                     Ok(result.into())
                 } else {
                     Err(Error::from(response.status()))
