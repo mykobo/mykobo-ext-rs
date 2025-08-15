@@ -70,7 +70,26 @@ pub struct AddressScreeningRequest {
 
 pub fn anchor_to_chain(anchor: &str) -> u8 {
     match anchor.to_uppercase().as_str() {
-        "ANCHOR_PLATFORM" => 13,
+        "PLATFORM" | "STELLAR" | "MYKOBO" => 13,
         _ => 0, // Default or unknown blockchain
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_anchor_to_chain_known_anchors() {
+        assert_eq!(anchor_to_chain("PLATFORM"), 13);
+        assert_eq!(anchor_to_chain("Stellar"), 13);
+        assert_eq!(anchor_to_chain("mykobo"), 13);
+    }
+
+    #[test]
+    fn test_anchor_to_chain_unknown_anchor() {
+        assert_eq!(anchor_to_chain("bitcoin"), 0);
+        assert_eq!(anchor_to_chain("ethereum"), 0);
+        assert_eq!(anchor_to_chain(""), 0);
     }
 }
