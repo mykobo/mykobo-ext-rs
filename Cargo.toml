@@ -1,6 +1,6 @@
 [package]
 name = "mykobo-ext-rs"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 repository="git@github.com:mykobo/mykobo-ext-rs.git"
 publish = false
