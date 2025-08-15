@@ -6,6 +6,8 @@ use crate::monitoring::models::{
 };
 use reqwest::Client;
 use std::env;
+use tracing::debug;
+use tracing::field::debug;
 
 pub struct MonitoringResult {
     pub score: u8,
@@ -68,7 +70,9 @@ impl MerkelScienceMonitoring {
             block_chain: anchor_to_chain(anchor),
         };
 
-        if let Ok(response) = self
+        debug!("Sending request to Merkel Science API({}): {:#?}", url, request);
+
+        match self
             .client
             .post(&url)
             .json(&serde_json::json!(request))
@@ -76,16 +80,17 @@ impl MerkelScienceMonitoring {
             .send()
             .await
         {
-            if response.status().is_success() {
-                let result: AddressScreeningResponse = response.json().await?;
-                Ok(result.into())
-            } else {
-                Err(Error::from(response.status()))
+            Ok(response) => {
+                if response.status().is_success() {
+                    let result: AddressScreeningResponse = response.json().await?;
+                    Ok(result.into())
+                } else {
+                    Err(Error::from(response.status()))
+                }
             }
-        } else {
-            Err(Error::new(
-                "Failed to send request to Merkel Science API".to_string(),
-            ))
+            Err(error) => Err(Error::new(format!(
+                "Failed to send request to Merkel Science API {error:?}"
+            ))),
         }
     }
 }
