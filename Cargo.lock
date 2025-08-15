@@ -1167,7 +1167,7 @@ dependencies = [
 
 [[package]]
 name = "mykobo-ext-rs"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "httpmock",
  "pretty_assertions",
