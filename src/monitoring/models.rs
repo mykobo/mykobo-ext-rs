@@ -65,7 +65,7 @@ pub struct AddressScreeningResponse {
 #[derive(Debug, Serialize)]
 pub struct AddressScreeningRequest {
     pub identifier: String,
-    pub block_chain: String,
+    pub blockchain: String,
 }
 
 pub fn anchor_to_chain(anchor: &str) -> u8 {

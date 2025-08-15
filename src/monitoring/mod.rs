@@ -66,7 +66,7 @@ impl MerkelScienceMonitoring {
         let url = format!("{}/api/v4.2/addresses/", self.host);
         let request = AddressScreeningRequest {
             identifier: address.to_string(),
-            block_chain: anchor_to_chain(anchor).to_string(),
+            blockchain: anchor_to_chain(anchor).to_string(),
         };
 
         debug!("Sending request to Merkel Science API({}): {:#?}", url, request);
