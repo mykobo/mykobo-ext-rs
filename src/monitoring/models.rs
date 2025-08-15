@@ -8,9 +8,9 @@ pub struct Workspace {
 
 #[derive(Debug, Deserialize)]
 pub struct TagDetail {
-    pub tag_type_verbose: String,
-    pub tag_subtype_verbose: String,
-    pub tag_name_verbose: String,
+    pub tag_type_verbose: Option<String>,
+    pub tag_subtype_verbose: Option<String>,
+    pub tag_name_verbose: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -46,8 +46,8 @@ pub struct AddressScreeningResponse {
     pub total_outgoing_value: String,
     pub total_outgoing_value_usd: String,
     pub balance: i32,
-    pub earliest_transaction_time: String,
-    pub latest_transaction_time: String,
+    pub earliest_transaction_time: Option<String>,
+    pub latest_transaction_time: Option<String>,
     pub risk_level: u8,
     pub risk_level_verbose: String,
     pub created_at: String,

@@ -2,7 +2,7 @@ use mykobo_ext_rs::monitoring::models::AddressScreeningResponse;
 
 #[test]
 fn test_address_screening_deserialisation() {
-    let payload = r#"
+    let risky_payload = r#"
     {
       "identifier": "GA223OFHVKVAH2NBXP4AURJRVJTSOVHGBMKJNL6GRJWNN4SARVGSITYG",
       "blockchain": 13,
@@ -66,11 +66,54 @@ fn test_address_screening_deserialisation() {
     }
     "#;
 
-    let response: AddressScreeningResponse = serde_json::from_str(payload).unwrap();
+    let trusty_payload = r#"
+    {
+      "identifier": "GCGRZQ2OZWQVUWSRAFXSNL3N2KF4IVDOONNFBRP2G3622JJYCUYBCQE6",
+      "blockchain": 13,
+      "blockchain_verbose": "Stellar",
+      "type": null,
+      "type_verbose": null,
+      "total_incoming_value": "0.0000",
+      "total_incoming_value_usd": "0.00",
+      "total_outgoing_value": "0.0000",
+      "total_outgoing_value_usd": "0.00",
+      "balance": 0,
+      "earliest_transaction_time": null,
+      "latest_transaction_time": null,
+      "risk_level": 0,
+      "risk_level_verbose": "No Risk Detected",
+      "created_at": "2025-08-15T16:47:41.307661Z",
+      "updated_at": "2025-08-15T16:47:41.307674Z",
+      "workspace": {
+        "name": "Mykobo",
+        "slug": "mykobo"
+      },
+      "originator": [],
+      "beneficiary": [],
+      "tags": {
+        "owner": {},
+        "user": {}
+      },
+      "digital_assets": [],
+      "custom_tags": [],
+      "is_megahub": false,
+      "customer_id": null
+    }
+    "#;
+
+    let response: AddressScreeningResponse = serde_json::from_str(risky_payload).unwrap();
     assert_eq!(response.risk_level, 5);
     assert_eq!(response.risk_level_verbose, "Critical");
     assert_eq!(
         response.identifier,
         "GA223OFHVKVAH2NBXP4AURJRVJTSOVHGBMKJNL6GRJWNN4SARVGSITYG"
+    );
+
+    let ok_response: AddressScreeningResponse = serde_json::from_str(trusty_payload).unwrap();
+    assert_eq!(ok_response.risk_level, 0);
+    assert_eq!(ok_response.risk_level_verbose, "No Risk Detected");
+    assert_eq!(
+        ok_response.identifier,
+        "GCGRZQ2OZWQVUWSRAFXSNL3N2KF4IVDOONNFBRP2G3622JJYCUYBCQE6"
     );
 }
