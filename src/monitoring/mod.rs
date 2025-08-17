@@ -69,7 +69,10 @@ impl MerkelScienceMonitoring {
             blockchain: anchor_to_chain(anchor).to_string(),
         };
 
-        debug!("Sending request to Merkel Science API({}): {:#?}", url, request);
+        debug!(
+            "Sending request to Merkel Science API({}): {:#?}",
+            url, request
+        );
 
         match self
             .client

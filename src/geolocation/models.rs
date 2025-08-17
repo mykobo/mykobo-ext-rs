@@ -18,7 +18,7 @@ pub struct FreeIpApiResponse {
     pub languages: Vec<String>,
     pub latitude: Option<f64>,
     pub longitude: Option<f64>,
-    pub phone_codes: Vec<u8>,
+    pub phone_codes: Vec<u16>,
     pub region_name: Option<String>,
     pub time_zones: Vec<String>,
     pub zip_code: Option<String>,

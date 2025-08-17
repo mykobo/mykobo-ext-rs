@@ -96,3 +96,42 @@ fn test_error_deserialisation() {
         error.to_string()
     );
 }
+
+#[test]
+fn test_error_deserialisation_ie() {
+    let json_data = r#"
+   {
+      "ipVersion": 4,
+      "ipAddress": "50.7.4.149",
+      "latitude": 53.3183,
+      "longitude": -6.4404,
+      "countryName": "Ireland",
+      "countryCode": "IE",
+      "capital": "Dublin",
+      "phoneCodes": [
+        353
+      ],
+      "timeZones": [
+        "Europe/Dublin"
+      ],
+      "zipCode": "22",
+      "cityName": "Saggart (Kilcarbery)",
+      "regionName": "Leinster",
+      "continent": "Europe",
+      "continentCode": "EU",
+      "currencies": [
+        "EUR"
+      ],
+      "languages": [
+        "ga",
+        "en"
+      ],
+      "asn": "30058",
+      "asnOrganization": "FDCservers.net",
+      "isProxy": false
+    }
+   "#;
+
+    let deserialized = serde_json::from_str::<FreeIpApiResponse>(json_data);
+    assert!(deserialized.is_ok());
+}
