@@ -4,6 +4,7 @@ use crate::Error;
 use models::FreeIpApiResponse;
 use reqwest::{Method, StatusCode};
 use tracing::debug;
+use crate::monitoring::models::AddressScreeningResponse;
 
 #[derive(Debug, Clone)]
 pub struct GeoLocatorConfig {
@@ -56,9 +57,9 @@ impl GeoLocatorClient {
                 response.json().await.map_err(Error::from)
             }
             Ok(response) => {
-                let error: Error = response.json().await.map_err(Error::from).unwrap_or(Error {
-                    message: "Failed to parse json".to_string(),
-                });
+                let text = response.text().await?;
+                println!("{text}");
+                let error: Error = serde_json::from_str(&text)?;
                 Err(error)
             }
             Err(e) => Err(Error::from(e)),
