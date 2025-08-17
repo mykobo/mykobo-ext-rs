@@ -3,8 +3,7 @@ pub mod models;
 use crate::Error;
 use models::FreeIpApiResponse;
 use reqwest::{Method, StatusCode};
-use tracing::debug;
-use crate::monitoring::models::AddressScreeningResponse;
+use tracing::info;
 
 #[derive(Debug, Clone)]
 pub struct GeoLocatorConfig {
@@ -45,7 +44,7 @@ impl GeoLocatorClient {
 
     pub async fn find(ip: &str, config: GeoLocatorConfig) -> Result<FreeIpApiResponse, Error> {
         let url = format!("{}{}{ip}", config.host, config.path);
-        debug!("Geolocating IP with {url}");
+        info!("Geolocating IP with {url}");
         let client = reqwest::Client::new();
         match client
             .request(Method::GET, url)
@@ -58,7 +57,7 @@ impl GeoLocatorClient {
             }
             Ok(response) => {
                 let text = response.text().await?;
-                println!("{text}");
+                println!("GEOLOCATOR RESPONSE: {text}");
                 let error: Error = serde_json::from_str(&text)?;
                 Err(error)
             }
