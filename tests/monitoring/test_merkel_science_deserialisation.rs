@@ -117,3 +117,46 @@ fn test_address_screening_deserialisation() {
         "GCGRZQ2OZWQVUWSRAFXSNL3N2KF4IVDOONNFBRP2G3622JJYCUYBCQE6"
     );
 }
+
+#[test]
+fn test_solana_deserialisation() {
+    let payload = r#"
+    {
+      "identifier": "B2JAtKctzWLt4cegWpqBjRqABZDxSSBCNCXPP7Kyk24J",
+      "blockchain": 24,
+      "blockchain_verbose": "Solana",
+      "type": null,
+      "type_verbose": null,
+      "total_incoming_value": "0.0000",
+      "total_incoming_value_usd": "0.00",
+      "total_outgoing_value": "0.0000",
+      "total_outgoing_value_usd": "0.00",
+      "balance": 0,
+      "earliest_transaction_time": null,
+      "latest_transaction_time": null,
+      "risk_level": 0,
+      "risk_level_verbose": "No Risk Detected",
+      "created_at": "2025-11-21T17:50:39.693886Z",
+      "updated_at": "2025-11-21T17:50:39.693900Z",
+      "workspace": {
+        "name": "Mykobo",
+        "slug": "mykobo"
+      },
+      "originator": [],
+      "beneficiary": [],
+      "tags": {
+        "owner": {},
+        "user": {}
+      },
+      "digital_assets": [],
+      "custom_tags": [],
+      "is_megahub": false,
+      "customer_id": null
+    }
+    "#;
+
+    let ok_response: AddressScreeningResponse = serde_json::from_str(payload).unwrap();
+    assert_eq!(ok_response.risk_level, 0);
+    assert_eq!(ok_response.risk_level_verbose, "No Risk Detected");
+    assert_eq!(ok_response.identifier, "B2JAtKctzWLt4cegWpqBjRqABZDxSSBCNCXPP7Kyk24J".to_string())
+}
