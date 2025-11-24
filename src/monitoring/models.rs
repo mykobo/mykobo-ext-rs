@@ -45,7 +45,7 @@ pub struct AddressScreeningResponse {
     pub total_incoming_value_usd: String,
     pub total_outgoing_value: String,
     pub total_outgoing_value_usd: String,
-    pub balance: i32,
+    pub balance: f64,
     pub earliest_transaction_time: Option<String>,
     pub latest_transaction_time: Option<String>,
     pub risk_level: u8,
